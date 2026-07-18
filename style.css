@@ -91,3 +91,38 @@ body {
 .add-button:hover {
   background-color: #4338ca;
 }
+
+/* finter-tabs 스타일 */
+.filter-tabs {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #f3f4f6;
+  padding-bottom: 8px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  color: #9ca3af;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  padding-bottom: 8px;
+  position: relative;
+}
+
+.tab-btn.active {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -9px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #4f46e5;
+}
