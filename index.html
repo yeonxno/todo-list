@@ -50,22 +50,22 @@
       1-3. 카테고리 태그
       1-4. 삭제 버튼
       -->
-      <li>
-        <div>
-          <input type="checkbox" id="todo-1">
-          <label for="todo-1">HTML/CSS 기본 뼈대와 디자인 완성하기</label>
-          <span>공부</span>
+      <li class="todo-item">
+        <div class="todo-content">
+          <input type="checkbox" class="todo-checkbox" id="todo-1">
+          <label for="todo-1" class="todo-text">HTML/CSS 기본 뼈대와 디자인 완성하기</label>
+          <span class="badge badge-study">공부</span>
         </div>
-        <button>&times;</button>
+        <button class="delete-button">&times;</button>
       </li>
 
-      <li>
-        <div>
-          <input type="checkbox" id="todo-2" checked>
-          <label for="todo-2">투두리스트 기능 기획하기</label>
-          <span>업무</span>
+      <li class="todo-item completed">
+        <div class="todo-content">
+          <input type="checkbox" class="todo-checkbox" id="todo-2" checked>
+          <label for="todo-2" class="todo-text">투두리스트 기능 기획하기</label>
+          <span class="badge badge-work">업무</span>
         </div>
-        <button>&times;</button>
+        <button class="delete-button">&times;</button>
       </li>
     </ul>
   </div>
