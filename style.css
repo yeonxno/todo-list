@@ -42,3 +42,52 @@ body {
   color: #1f2937;
   font-weight: 700;
 }
+
+/* input-section 스타일 */
+.input-section {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.todo-select {
+  padding: 0 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #4b5563;
+  font-size: 0.9rem;
+  cursor: pointer;
+  outline: none;
+}
+
+.todo-input {
+  flex: 1;
+  padding: 14px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.todo-input:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+.add-button {
+  padding: 0 20px;
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.add-button:hover {
+  background-color: #4338ca;
+}
