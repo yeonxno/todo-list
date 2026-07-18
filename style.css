@@ -14,3 +14,13 @@ body {
   min-height: 100vh;
   padding: 20px;
 }
+
+/* todo 카드 컨테이너 */
+.todo-container {
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 540px;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
