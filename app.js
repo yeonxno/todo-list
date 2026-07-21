@@ -39,6 +39,7 @@ function renderTodos() {
         <label for="${todo.id}" class="todo-text">${todo.text}</label>
         <span class="badge ${badgeClass}">${todo.category}</span>
       </div>
+      <button class="delete-button" data-id="${todo.id}">&times;</button>
     `;
 
     // 최신 글이 위로 오도록 삽입
@@ -71,6 +72,35 @@ function addTodo() {
   todoInput.value = '';
   todoInput.focus();
 }
+
+// 4. 리스트 클릭 이벤트 처리 (체크박스 및 삭제)
+todoList.addEventListener('click', function(e) {
+  // 클릭된 요소가 삭제 버튼인 경우
+  if (e.target.classList.contains('delete-button')) {
+    const targetId = e.target.getAttribute('data-id');
+
+    // 해당 id를 가진 데이터만 제외하고 새로운 배열 생성
+    todos = todos.filter(todo => todo.id !== targetId);
+
+    saveLocalStorage();
+    renderTodos();
+  }
+
+  // 클릭된 요소가 체크박스인 경우
+  if (e.target.classList.contains('todo-checkbox')) {
+    const targetId = e.target.id;
+    
+    todos = todos.map(todo => {
+      if (todo.id === targetId) {
+        return { ...todo, isCompleted: e.target.checked };
+      }
+      return todo;
+    });
+
+    saveLocalStorage();
+    renderTodos();
+  }
+});
 
 // 이벤트 리스너 등록
 document.addEventListener('DOMContentLoaded', function() {
