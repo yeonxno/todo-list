@@ -4,9 +4,11 @@ const todoList = document.getElementById('todo-list');
 const todoInput = document.getElementById('todo-input');
 const categorySelect = document.getElementById('category-select');
 const addButton = document.getElementById('add-button');
+const filterTabs = document.getElementById('filter-tabs');
 
 // 할 일 데이터를 담을 배열, localStorage에서 가져오거나 없으면 빈 배열
 let todos = JSON.parse(localStorage.getItem('todos')) || [];
+let currentFilter = '전체보기';
 
 // localStorage에 현재 todos 배열 저장
 function saveLocalStorage() {
@@ -24,8 +26,18 @@ function displayCurrentDate() {
 function renderTodos() {
   todoList.innerHTML = ''; // 기존 리스트 내부 비우기
 
-  // todos 배열 돌면서 화면에 렌더링
-  todos.forEach(function(todo) {
+  // 현재 선택된 필터 조건에 따라 데이터 거르기
+  const filteredTodos = todos.filter(function(todo) {
+    if (currentFilter === '진행중') {
+      return todo.isCompleted === false; // 완료되지 않은 것만
+    } else if (currentFilter === '완료') {
+      return todo.isCompleted === true;
+    }
+    return true;
+  });
+
+  // 필터링된 todos 배열 돌면서 화면에 렌더링
+  filteredTodos.forEach(function(todo) {
     const li = document.createElement('li');
     li.className = `todo-item ${todo.isCompleted ? 'completed' : ''}`;
 
@@ -98,6 +110,25 @@ todoList.addEventListener('click', function(e) {
     });
 
     saveLocalStorage();
+    renderTodos();
+  }
+});
+
+// 5. 필터탭 클릭 이벤트 처리
+filterTabs.addEventListener('click', function(e) {
+  // 클릭된 요소가 버튼일 때만 작동
+  if (e.target.classList.contains('tab-btn')) {
+    // 모든 탭 버튼에서 active 클래스를 빼앗음
+    const buttons = filterTabs.querySelectorAll('.tab-btn');
+    buttons.forEach(btn => btn.classList.remove('active'));
+
+    // 클릭된 버튼에만 active 클래스를 부여
+    e.target.classList.add('active');
+
+    // 버튼에 적힌 글자(전체보기, 진행중, 완료)를 필터 기준으로 설정
+    currentFilter = e.target.textContent;
+
+    // 필터 조건 바뀌었으니 화면 다시 렌더링
     renderTodos();
   }
 });
